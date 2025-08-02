@@ -1,0 +1,35 @@
+/* frontend/src/components/Help.css */
+.help {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #121212; /* Dark background */
+    color: #ADD8E6; /* Light blue text for dark backgrounds */
+  }
+  
+  .help h2, .help label {
+    color: #4682B4; /* Darker blue text for headings and labels */
+  }
+  
+  .help h2 {
+    text-align: center;
+  }
+  
+  .help p {
+    color: #5F9EA0; /* Cadet blue for paragraphs */
+    margin-bottom: 20px;
+  }
+  
+  .help ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .help ul li {
+    background-color: #e0e0e0;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 3px;
+  }

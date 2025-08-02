@@ -1,0 +1,55 @@
+/* frontend/src/components/Chatbot.css */
+.chatbot {
+    position: fixed;
+    bottom: 20px; /* Position at the bottom */
+    left: 20px; /* Position at the left */
+    background-color: #8A2BE2;  
+    color: #FFFFFF; /* White text for contrast */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Light shadow for floating effect */
+    background-image: url('chatbot.png'); /* Default image */
+    background-size: contain; /* Ensure the image is fully visible */
+    background-position: center; /* Center the image */
+    width: 80px; /* Increased size */
+    height: 80px; /* Increased size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.chatbot:hover + .chatbot-window {
+    display: block; /* Show chat window on hover */
+}
+
+.chatbot h2, .chatbot label {
+    color: #FFFFFF; /* White text for headings and labels */
+}
+
+.chatbot-button {
+    display: none; /* Remove any button that might cause a pink dot */
+}
+
+.chatbot-window {
+    display: none; /* Initially hidden */
+    background-color: #FFFFFF; /* White background for chatbot window */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    bottom: 100px; /* Position above the chatbot */
+    left: 0;
+    background-size: cover;
+    z-index: 1;
+}
+
+.chatbot-window::before {
+    content: 'How can I help you?'; /* Default message */
+    color: #000000;
+    display: block;
+    margin-bottom: 10px;
+}

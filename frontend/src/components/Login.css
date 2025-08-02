@@ -1,0 +1,41 @@
+/* frontend/src/components/Login.css */
+.login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #121212; /* Dark background */
+    color: #ADD8E6; /* Light blue text for dark backgrounds */
+  }
+  
+  .login h2 {
+    text-align: center;
+    color: #4682B4; /* Darker blue text for headings */
+  }
+  
+  .login form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login label {
+    margin-bottom: 5px;
+    color: #4682B4; /* Darker blue text for labels */
+  }
+  
+  .login input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .login button {
+    padding: 10px;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF; /* White text for buttons */
+    cursor: pointer;
+  }

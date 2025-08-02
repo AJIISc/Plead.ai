@@ -1,0 +1,59 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Home.css';
+
+function Home() {
+  return (
+    <div className="home">
+      <header className="home-header">
+        <h1>PLEAD – Payments & Legal Enforcement for Agreements & Deals</h1>
+        <nav>
+          <ul>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/review">Types of Contracts</Link></li>
+            <li><Link to="/legal-counsel">Legal Counsel</Link></li>
+            <li><Link to="/pricing">Pricing</Link></li>
+            <li><Link to="/help">Help</Link></li>
+          </ul>
+        </nav>
+      </header>
+      <main className="home-content">
+        <section className="challenges">
+          <h2>Challenges in the Current System</h2>
+          <p>India's rapidly growing digital payment economy has made transactions more seamless, but many individuals and small businesses still rely on verbal agreements or informal promises. This creates challenges such as:</p>
+          <ul>
+            <li><strong>Lack of Legal Protection:</strong> Individuals hesitate to lend money due to the fear of non-repayment, especially introverts who find it difficult to ask for their money back from friends, family, or acquaintances.</li>
+            <li><strong>Business Risks:</strong> Small businesses struggle to recover payments for goods and services, and legal action is often complex, costly, and time-consuming.</li>
+            <li><strong>Legal Loopholes for Defaulters:</strong> Many defaulters exploit the legal system's inefficiencies, knowing that enforcing an informal agreement is difficult.</li>
+          </ul>
+        </section>
+        <section className="solution">
+          <h2>PleadAi Solution</h2>
+          <p>PleadAi solves this problem by providing a legally enforceable contract system combined with arbitration and legal support, ensuring smoother financial transactions and dispute resolution.</p>
+        </section>
+        <section className="vision-mission">
+          <h2>Vision</h2>
+          <p>To create a trustworthy and legally secure ecosystem for financial transactions, where individuals and businesses can confidently lend, borrow, and trade without fear of loss or legal complications.</p>
+          <h2>Mission</h2>
+          <p>Empower individuals and businesses to formalize their agreements with legally binding contracts. Ensure quick dispute resolution through an arbitration system. Provide end-to-end legal support, including internal legal teams and authorized registered counsel for court procedures if needed.</p>
+        </section>
+        <section className="features">
+          <h2>Key Features</h2>
+          <ul>
+            <li><strong>Legally Binding Contracts:</strong> Users can generate enforceable contracts before lending money or making a business transaction.</li>
+            <li><strong>Arbitration for Quick Redressal:</strong> In case of disputes, PleadAi offers arbitration services to resolve conflicts efficiently.</li>
+            <li><strong>Legal Support for Court Cases:</strong> If arbitration fails, PleadAi's legal team assists with court proceedings.</li>
+            <li><strong>Transaction Mediation:</strong> Funds can be held in escrow and only released once both parties fulfill their contractual obligations.</li>
+            <li><strong>Offline Contract Generation:</strong> Even for cash transactions, users can generate contracts for mutual agreement, ensuring clarity and security.</li>
+          </ul>
+        </section>
+        <section className="impact">
+          <h2>Impact & Long-Term Vision</h2>
+          <p>Boosts confidence and peace of mind when lending money or engaging in business transactions. Enhances ease of doing business for both domestic and international transactions. Supports informal petty lending, making everyday transactions more secure. Encourages financial discipline by holding defaulters accountable.</p>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default Home; 

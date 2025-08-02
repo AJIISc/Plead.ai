@@ -1,0 +1,111 @@
+.home {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent overflow */
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 20px;
+  position: fixed; /* Keep header fixed */
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+.home-header h1 {
+  font-size: 2.5em; /* Large font size for the main title */
+  color: #4A4A4A; /* Dark gray color for the title */
+  margin: 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #007BFF; /* Blue color for links */
+  font-size: 1.1em; /* Slightly larger font size for links */
+}
+
+.home-content {
+  margin-top: 100px; /* Space for fixed header */
+}
+
+.plead-solution {
+  height: 100vh; /* Full height for the PleadAi Solution section */
+  padding: 20px;
+  background-color: #4CAF50; /* Green */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.vision-mission {
+  display: flex; /* Use flexbox for side-by-side layout */
+  height: 100vh; /* Full height for Vision and Mission sections */
+}
+
+.vision, .mission {
+  flex: 1; /* Equal width for both sections */
+  padding: 20px;
+  color: #fff;
+}
+
+.vision {
+  background-color: #2196F3; /* Blue */
+}
+
+.mission {
+  background-color: #FF9800; /* Orange */
+}
+
+.challenges {
+  height: 100vh; /* Full height for Challenges section */
+  padding: 20px;
+  background-color: #F44336; /* Red */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+.features {
+  height: 100vh; /* Full height for Features section */
+  padding: 20px;
+  background-color: #9C27B0; /* Purple */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+h2 {
+  color: #fff; /* White color for section titles */
+  font-size: 2em; /* Larger font size for section titles */
+}
+
+p {
+  font-size: 1.2em; /* Standard font size for paragraphs */
+  color: #E0E0E0; /* Light gray for paragraph text */
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 1.1em; /* Standard font size for list items */
+}

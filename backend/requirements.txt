@@ -1,0 +1,6 @@
+Django
+djangorestframework
+psycopg2-binary
+web3
+
+AJ@rya123

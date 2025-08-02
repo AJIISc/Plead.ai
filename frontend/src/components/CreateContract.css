@@ -1,0 +1,61 @@
+/* frontend/src/components/CreateContract.css */
+.contract {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #121212; /* Dark background */
+  color: #ADD8E6; /* Light blue text for dark backgrounds */
+}
+
+.contract h2 {
+  text-align: center;
+  color: #4682B4; /* Darker blue text for headings */
+}
+
+.contract form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contract label {
+  margin-bottom: 5px;
+  color: #4682B4; /* Darker blue text for labels */
+}
+
+.contract input,
+.contract textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #1a1a1a; /* Darker input background */
+  color: #ADD8E6; /* Light blue text for inputs */
+}
+
+.contract button {
+  padding: 10px;
+  background-color: #4682B4; /* Darker blue for button */
+  border: none;
+  border-radius: 5px;
+  color: #fff; /* White text for buttons */
+  cursor: pointer;
+}
+
+.contract button:hover {
+  background-color: #5a9bd4; /* Lighter blue on hover */
+}
+
+.contract ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contract ul li {
+  background-color: #1a1a1a; /* Darker background for list items */
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  color: #ADD8E6; /* Light blue text for dark backgrounds */
+} 

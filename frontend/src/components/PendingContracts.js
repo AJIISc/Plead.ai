@@ -1,0 +1,390 @@
+// // 
+
+// import React, { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import './PendingContracts.css';
+
+// function PendingContracts() {
+//   const [pendingContracts, setPendingContracts] = useState([]);
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     fetchPendingContracts();
+//   }, []);
+
+//   const fetchPendingContracts = async () => {
+//     const token = localStorage.getItem('token');
+
+//     if (!token) {
+//       alert('You are not authenticated. Please log in.');
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch('http://localhost:8000/api/v1/pending-offers', {
+//         method: 'GET',
+//         headers: {
+//           'Authorization': `Bearer ${token}`,
+//           'Content-Type': 'application/json'
+//         }
+//       });
+
+//       if (!response.ok) {
+//         const errorResponse = await response.json();
+//         throw new Error('Failed to fetch pending contracts: ' + errorResponse.message);
+//       }
+
+//       const result = await response.json();
+//       console.log('API Response:', result);
+//       setPendingContracts(Array.isArray(result.pending_offers) ? result.pending_offers : []);
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   // Filter pending contracts based on search term
+//   const filteredContracts = pendingContracts.filter(contract =>
+//     contract.offer_details.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   const handleAcceptOffer = async (offerId, offerDetails, contractType, senderId, contract_title) => {
+//     const token = localStorage.getItem('token');
+
+//     if (!token) {
+//       alert('You are not authenticated. Please log in.');
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch('http://localhost:8000/api/v1/accept-offer', {
+//         method: 'POST',
+//         headers: {
+//           'Authorization': `Bearer ${token}`,
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ offerId, offerDetails, contractType, senderId, contract_title }) // Include offerTitle in the request
+//       });
+
+//       if (!response.ok) {
+//         const errorResponse = await response.json();
+//         throw new Error('Failed to accept offer: ' + errorResponse.message);
+//       }
+
+//       const result = await response.json();
+//       alert('Offer accepted successfully: ' + result.message);
+      
+//       // Refresh the pending contracts
+//       fetchPendingContracts();
+
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   const handleCounterOffer = async (offerId) => {
+//     // Logic to counter the offer
+//     console.log(`Countering offer for offer ID: ${offerId}`);
+//     // Call the API to counter the offer
+//   };
+
+//   const handleRejectOffer = async (offerId) => {
+//     // Logic to reject the offer
+//     console.log(`Rejecting offer for offer ID: ${offerId}`);
+//     // Call the API to reject the offer
+//   };
+
+//   const handleCheckContractDetails = async (offerId) => {
+//     const token = localStorage.getItem('token');
+
+//     if (!token) {
+//       alert('You are not authenticated. Please log in.');
+//       return;
+//     }
+
+//     try {
+//       const response = await fetch(`http://localhost:8000/api/v1/contract-details/${offerId}`, {
+//         method: 'GET',
+//         headers: {
+//           'Authorization': `Bearer ${token}`,
+//           'Content-Type': 'application/json'
+//         }
+//       });
+
+//       if (!response.ok) {
+//         const errorResponse = await response.json();
+//         throw new Error('Failed to fetch contract details: ' + errorResponse.message);
+//       }
+
+//       const contractDetails = await response.json();
+//       alert(`Contract Details:\n${JSON.stringify(contractDetails, null, 2)}`); // Display contract details in an alert
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   return (
+//     <div className="pending-contracts">
+//       <h2>Pending Contracts</h2>
+//       <input
+//         type="text"
+//         placeholder="Search contracts..."
+//         value={searchTerm}
+//         onChange={(e) => setSearchTerm(e.target.value)}
+//         style={{ marginBottom: '10px', width: '100%' }}
+//       />
+//       <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+//         <thead>
+//           <tr>
+//             <th>Offer ID</th>
+//             <th>Sender Name</th> {/* New column for sender name */}
+//             <th>Details</th>
+//             <th>Status</th>
+//             <th>Offer Title</th> {/* New column for offer title */}
+//             <th>Actions</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {filteredContracts.length > 0 ? (
+//             filteredContracts.map((contract) => (
+//               <tr key={contract.offer_id}>
+//                 <td>{contract.offer_id}</td>
+//                 <td>{contract.sender_name}</td> {/* Display sender name */}
+//                 <td>{contract.offer_details}</td>
+//                 <td>{contract.offer_status}</td>
+//                 <td>{contract.contract_title}</td> {/* Display offer title */}
+//                 <td>
+//                   <button onClick={() => handleCheckContractDetails(contract.offer_id)}>Check Details</button>
+//                   <button onClick={() => handleAcceptOffer(contract.offer_id, contract.offer_details, contract.contract_type, contract.sender_id, contract.contract_title)}>Accept Offer</button>
+//                   <button onClick={() => handleCounterOffer(contract.offer_id)}>Counter Offer</button>
+//                   <button onClick={() => handleRejectOffer(contract.offer_id)}>Reject Offer</button>
+//                 </td>
+//               </tr>
+//             ))
+//           ) : (
+//             <tr>
+//               <td colSpan="6">No pending contracts found.</td>
+//             </tr>
+//           )}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// }
+
+// export default PendingContracts;
+
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './PendingContracts.css';
+
+function PendingContracts() {
+  const [pendingContracts, setPendingContracts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [privateKey, setPrivateKey] = useState(''); // State for private key
+  const [selectedOffer, setSelectedOffer] = useState(null); // State for selected offer
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchPendingContracts();
+  }, []);
+
+  const fetchPendingContracts = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert('You are not authenticated. Please log in.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/v1/pending-offers', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error('Failed to fetch pending contracts: ' + errorResponse.message);
+      }
+
+      const result = await response.json();
+      console.log('API Response:', result);
+      setPendingContracts(Array.isArray(result.pending_offers) ? result.pending_offers : []);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleAcceptOffer = (offerId, offerDetails, contractType, senderId, contract_title) => {
+    setSelectedOffer({ offerId, offerDetails, contractType, senderId, contract_title });
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const handleSubmit = async () => {
+    if (!privateKey) {
+      alert('Please enter your private key.');
+      return;
+    }
+
+    const { offerId, offerDetails, contractType, senderId, contract_title } = selectedOffer;
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert('You are not authenticated. Please log in.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:8000/api/v1/accept-offer', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ offerId, offerDetails, contractType, senderId, contract_title, privateKey }) // Include private key in the request
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error('Failed to accept offer: ' + errorResponse.message);
+      }
+
+      const result = await response.json();
+      alert('Offer accepted successfully: ' + result.message);
+      
+      // Refresh the pending contracts
+      fetchPendingContracts();
+      setIsModalOpen(false); // Close the modal
+      setPrivateKey(''); // Clear the private key input
+
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false); // Close the modal
+    setPrivateKey(''); // Clear the private key input
+  };
+
+  const handleCheckContractDetails = async (offerId) => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert('You are not authenticated. Please log in.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:8000/api/v1/contract-details/${offerId}`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error('Failed to fetch contract details: ' + errorResponse.message);
+      }
+
+      const contractDetails = await response.json();
+      alert(`Contract Details:\n${JSON.stringify(contractDetails, null, 2)}`); // Display contract details in an alert
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleCounterOffer = async (offerId) => {
+    // Logic to counter the offer
+    console.log(`Countering offer for offer ID: ${offerId}`);
+    // Implement the API call or logic for countering the offer
+  };
+
+  const handleRejectOffer = async (offerId) => {
+    // Logic to reject the offer
+    console.log(`Rejecting offer for offer ID: ${offerId}`);
+    // Implement the API call or logic for rejecting the offer
+  };
+
+  // Filter pending contracts based on search term
+  const filteredContracts = pendingContracts.filter(contract =>
+    contract.offer_details.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="pending-contracts">
+      <h2>Pending Contracts</h2>
+      <input
+        type="text"
+        placeholder="Search contracts..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ marginBottom: '10px', width: '100%' }}
+      />
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th>Offer ID</th>
+            <th>Sender Name</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Offer Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredContracts.length > 0 ? (
+            filteredContracts.map((contract) => (
+              <tr key={contract.offer_id}>
+                <td>{contract.offer_id}</td>
+                <td>{contract.sender_name}</td>
+                <td>{contract.offer_details}</td>
+                <td>{contract.offer_status}</td>
+                <td>{contract.contract_title}</td>
+                <td>
+                  <button onClick={() => handleCheckContractDetails(contract.offer_id)}>Check Details</button>
+                  <button onClick={() => handleAcceptOffer(contract.offer_id, contract.offer_details, contract.contract_type, contract.sender_id, contract.contract_title)}>Accept Offer</button>
+                  <button onClick={() => handleCounterOffer(contract.offer_id)}>Counter Offer</button>
+                  <button onClick={() => handleRejectOffer(contract.offer_id)}>Reject Offer</button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6">No pending contracts found.</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* Modal for entering private key */}
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Enter Private Key to Proceed</h3>
+            <input
+              type="text"
+              placeholder="Enter your private key"
+              value={privateKey}
+              onChange={(e) => setPrivateKey(e.target.value)}
+            />
+            <div className="modal-actions">
+              <button onClick={handleSubmit}>Submit</button>
+              <button onClick={handleCancel}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default PendingContracts;

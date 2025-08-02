@@ -1,0 +1,6 @@
+ docker run -d --name opensearch_v2 \
+       -p 9200:9200 -p 9600:9600 \
+       -e "discovery.type=single-node" \
+       -e "plugins.security.disabled=true" \
+       -e "OPENSEARCH_INITIAL_ADMIN_PASSWORD=AJ@rya123" \
+       opensearchproject/opensearch:latest

@@ -1,0 +1,104 @@
+/* UserPage.css */
+
+.user-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f9f9f9, #e0e0e0); /* Gradient background */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease; /* Animation for hover effect */
+}
+
+.user-page:hover {
+  transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+.user-page h2 {
+  text-align: center;
+  color: #333;
+  font-size: 2em; /* Larger font size for headings */
+  margin-bottom: 20px; /* Space below heading */
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a, nav ul li button {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px; /* Add padding for buttons */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+nav ul li a:hover, nav ul li button:hover {
+  text-decoration: underline;
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.dropbtn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  transition: opacity 0.3s ease; /* Smooth transition for dropdown */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Light blue background on hover */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1; /* Ensure dropdown is visible */
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #0056b3; /* Darker blue on hover */
+}
